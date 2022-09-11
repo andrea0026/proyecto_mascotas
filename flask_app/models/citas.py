@@ -13,9 +13,9 @@ class Appointment:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
 
-        #self.user_id = data['user_id']
-        #self.client_type_id = data['client_type_id']
-        #self.service_type_id = data['service_type_id']
+        self.user_id = data['user_id']
+        self.client_type_id = data['client_type_id']
+        self.service_type_id = data['service_type_id']
 
     def valida_appointment(formulario):
         es_valido = True
@@ -42,7 +42,7 @@ class Appointment:
     
     @classmethod
     def save(cls, formulario):
-        query = "INSERT INTO appointments(date, site, pet_name, animal_type) VALUES (%(date)s, %(site)s, %(pet_name)s, %(animal_type)s)"
+        query = "INSERT INTO appointments(date, site, pet_name, animal_type, user_id, client_type_id, service_type_id) VALUES (%(date)s, %(site)s, %(pet_name)s, %(animal_type)s, %(user_id)s, %(client_type_id)s, %(service_type_id)s)"
         print(query)
         result = connectToMySQL('tienda_mascotas').query_db(query, formulario) 
         return result
