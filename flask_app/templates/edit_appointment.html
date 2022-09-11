@@ -48,6 +48,14 @@
                 <label for="description">sede</label>
                 <input type="text" id="site" name="site" class="form-control" value="{{appointment.site}}" required>
             </div>
+            <div class="form-group">
+                <label>Tipo de servicio</label>
+                <select class="form-select" aria-label="Default select example" id="service_type" name="service_type" required>
+                    <option value="" {% if services_types.service_type =='' %} selected {% endif %} >Open this select menu</option>
+                    <option value="d" {% if services_types.service_type =='c' %} selected {% endif %} >Corte de pelo</option>
+                    <option value="m" {% if services_types.service_type =='b' %} selected {% endif %} >Baño y secado</option>
+                </select> <!--falta traer la lista de tipos de servicio-->
+            </div>
             <br>
             <input type="submit" class="btn btn-success" value="Guardar">
             <br>

@@ -24,6 +24,8 @@
                         <th>Sede</th>
                         <th>Nombre mascota</th>
                         <th>Tipo mascota</th>
+                        <th>Tipo de servicio</th>
+                        <th>Cliente</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,17 +34,17 @@
                             <td>{{ appointment.date }}</td>
                             <td>{{ appointment.site }}</td>
                             <td>{{ appointment.pet_name }}</td>
-			                <td>{{ appointment.animal_type }}</td>
                             <td>
-                                {% if appointment.status == 'p' %}
+                                {% if appointment.animal_type == 'p' %}
                                     Perro
-                                {% elif appointment.status == 'g' %}
+                                {% elif appointment.animal_type == 'g' %}
                                     Gato
                                 {% else %}
                                     Valor No encontrado
                                 {% endif %}
-
                             </td>
+                            <td>{{ appointment.service_type_id }}</td> <!-- falta traer la descripcion de estas tablas -->
+                            <td>{{ appointment.client_type_id }}</td>
                             <td>
                                 <a href="/edit/appointment/{{appointment.id}}" class="btn btn-primary">Editar</a>
                                 <a href="/delete/appointment/{{appointment.id}}" class="btn btn-danger">Eliminar</a>
