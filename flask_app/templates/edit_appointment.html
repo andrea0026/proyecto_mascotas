@@ -34,28 +34,21 @@
             <br>
             <div class="form-group">
                 <label for="description">Fecha</label>
-                <input type="date" id="date" name="date" class="form-control" value="{{appointment.date}}" required>
+                <input type="datetime-local" id="date" name="date" class="form-control" value="{{appointment.date}}" required>
             </div>
             <div class="form-group">
                 <label>Tipo de mascota</label>
                 <select class="form-select" aria-label="Default select example" id="animal_type" name="animal_type" required>
                     <option value="" {% if appointment.animal_type =='' %} selected {% endif %} >Open this select menu</option>
-                    <option value="d" {% if appointment.animal_type =='p' %} selected {% endif %} >Perro</option>
-                    <option value="m" {% if appointment.animal_type =='g' %} selected {% endif %} >Gato</option>
+                    <option value="p" {% if appointment.animal_type =='p' %} selected {% endif %} >Perro</option>
+                    <option value="g" {% if appointment.animal_type =='g' %} selected {% endif %} >Gato</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="description">sede</label>
                 <input type="text" id="site" name="site" class="form-control" value="{{appointment.site}}" required>
             </div>
-            <div class="form-group">
-                <label>Tipo de servicio</label>
-                <select class="form-select" aria-label="Default select example" id="service_type" name="service_type" required>
-                    <option value="" {% if services_types.service_type =='' %} selected {% endif %} >Open this select menu</option>
-                    <option value="d" {% if services_types.service_type =='c' %} selected {% endif %} >Corte de pelo</option>
-                    <option value="m" {% if services_types.service_type =='b' %} selected {% endif %} >Baño y secado</option>
-                </select> <!--falta traer la lista de tipos de servicio-->
-            </div>
+            <h2>Falta que traigan los tipos de servicios</h2>
             <br>
             <input type="submit" class="btn btn-success" value="Guardar">
             <br>
