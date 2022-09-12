@@ -38,13 +38,20 @@ class Appointment:
         if formulario['pet_name'] == "":
             flash("Ingrese el nombre de la mascota", "appointment")
             es_valido = False 
+        if formulario['service_type_id'] == "":
+            flash("Seleccione un tipo de servicio para tu mascota", "appointment")
+            es_valido = False 
 
         #Consultar si YA existe la hora y fecha
         query = "SELECT * FROM appointments WHERE date = %(date)s"
         results = connectToMySQL('tienda_mascotas').query_db(query, formulario)
-        if len(results) >= 1:
-            flash('Cita registrada previamente, eliga otro horario', 'appointment')
-            es_valido = False    
+        try:
+            if len(results) >= 1:
+                flash('Cita registrada previamente, eliga otro horario', 'appointment')
+                es_valido = False 
+        except:
+                es_valido = False
+                
         return es_valido 
     
     @classmethod
