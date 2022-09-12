@@ -2,6 +2,9 @@ from flask import render_template, redirect, session, request, flash #importacio
 from flask_app import app
 from flask_app.models.users import User
 from flask_app.models.citas import Appointment
+from flask_app.models.tipos_clientes import Tipo_Cliente
+from flask_app.models.tipos_servicios import Tipo_Servicio
+
 
 
 @app.route('/new/appointment')
@@ -13,7 +16,11 @@ def new_appointment():
         "id": session['usuario_id']
     }
     user = User.get_by_id(formulario)
-    return render_template('new_appointment.html', user=user)
+    
+    clients_types = Tipo_Cliente.get_all_clients_types()
+    services_types = Tipo_Servicio.get_all_services_types()
+    
+    return render_template('new_appointment.html', user=user, clients_types=clients_types, services=services_types)
 
 @app.route('/create/appointment', methods=['POST'])
 def create_appointment():
