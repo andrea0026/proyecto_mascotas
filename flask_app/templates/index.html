@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-6">
                 <h2>Registration</h2>
-                {% with messages = get_flashed_messages(category_filter=['registro']) %}
+                <!-- {% with messages = get_flashed_messages(category_filter=['registro']) %}
                     {% if messages %}
                         <div class="alert alert-danger">
                             {% for message in messages %}
@@ -20,8 +20,11 @@
                             {% endfor %}
                         </div>
                     {% endif %}
-                {% endwith %}
-                <form action="/register" method="post">
+                {% endwith %} -->
+
+                <div id="mensajeAlerta2"></div>
+
+                <form action="/register" method="post" id="formRegister">
                     <div class="form-group">
                         <label for="first_name">Nombre</label>
                         <input type="text" name="first_name" id="first_name" class="form-control">
@@ -58,7 +61,7 @@
                 {% endwith %} -->
 
                 <div id="mensajeAlerta"></div>
-                
+
                 <form action="/login" method="post" id="formLogin">
                     <div class="form-group">
                         <label for="email2">E-mail</label>

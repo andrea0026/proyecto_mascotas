@@ -82,6 +82,7 @@ class Appointment:
         past_appointments = []
         for appointment in results:
             past_appointments.append(cls(appointment))
+        print(past_appointments)
         return past_appointments
     
 
@@ -90,6 +91,7 @@ class Appointment:
         query = "SELECT appointments.* FROM appointments LEFT JOIN users ON users.id = appointments.user_id WHERE appointments.id = %(id)s" 
         result = connectToMySQL('tienda_mascotas').query_db(query, formulario) #recibimos una lista 
         appointment = cls(result[0]) 
+        print(appointment)
         return appointment
 
     @classmethod
@@ -103,3 +105,13 @@ class Appointment:
         query = "DELETE FROM appointments WHERE id = %(id)s"
         result = connectToMySQL('tienda_mascotas').query_db(query, formulario)
         return result
+    
+    @classmethod
+    def get_appointment_by_user(cls, formulario): 
+        query = "SELECT appointments.* FROM appointments LEFT JOIN users ON users.id = appointments.user_id WHERE user_id = %(id)s" 
+        result = connectToMySQL('tienda_mascotas').query_db(query, formulario) #recibimos una lista 
+        appointments =[]
+        for appointment in result:
+            appointments.append(cls(appointment))
+        print(appointment)
+        return appointments
