@@ -113,5 +113,4 @@ class Appointment:
         appointments =[]
         for appointment in result:
             appointments.append(cls(appointment))
-        print(appointment)
         return appointments

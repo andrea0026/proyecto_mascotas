@@ -28,38 +28,38 @@ class User:
         
         #Validar que mi nombre tenga más de 2 caracteres
         if len(formulario['first_name']) < 3:
-            # flash('Nombre debe de tener al menos 3 caracteres', 'registro')
+            flash('Nombre debe de tener al menos 3 caracteres', 'registro')
             es_valido = False
-            return jsonify(message='Nombre debe de tener al menos 3 caracteres')
+            # return jsonify(message='Nombre debe de tener al menos 3 caracteres')
         
         if len(formulario['last_name']) < 3:
-            # flash('Apellido debe de tener al menos 3 caracteres', 'registro')
+            flash('Apellido debe de tener al menos 3 caracteres', 'registro')
             es_valido = False
-            return jsonify(message='Apellido debe de tener al menos 3 caracteres')
+            # return jsonify(message='Apellido debe de tener al menos 3 caracteres')
         
         #Valido email con expresiones regulares
         if not EMAIL_REGEX.match(formulario['email']): 
-            # flash('Email invalido', 'registro')
+            flash('Email invalido', 'registro')
             es_valido = False
-            return jsonify(message='Email invalido')
+            # return jsonify(message='Email invalido')
 
         if len(formulario['password']) < 6:
-            # flash('Contraseña debe tener al menos 6 caracteres', 'registro')
+            flash('Contraseña debe tener al menos 6 caracteres', 'registro')
             es_valido = False
-            return jsonify(message='Contraseña debe tener al menos 6 caracteres')
+            # return jsonify(message='Contraseña debe tener al menos 6 caracteres')
         
         if formulario['password'] != formulario['confirm_password']:
-            # flash('Contraseñas no coiniciden', 'registro')
+            flash('Contraseñas no coiniciden', 'registro')
             es_valido = False
-            return jsonify(message='Contraseñas no coiniciden')
+            # return jsonify(message='Contraseñas no coiniciden')
         
         #Consultar si YA existe el correo
         query = "SELECT * FROM users WHERE email = %(email)s"
         results = connectToMySQL('tienda_mascotas').query_db(query, formulario)
         if len(results) >= 1:
-            # flash('E-mail registrado previamente', 'registro')
+            flash('E-mail registrado previamente', 'registro')
             es_valido = False
-            return jsonify(message='E-mail registrado previamente')
+            # return jsonify(message='E-mail registrado previamente')
 
         return es_valido
 

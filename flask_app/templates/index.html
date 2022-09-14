@@ -4,78 +4,73 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro e Inicio de Sesion</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Document</title>
+    <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" media="all" rel="stylesheet" />
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <h2>Registration</h2>
-                <!-- {% with messages = get_flashed_messages(category_filter=['registro']) %}
-                    {% if messages %}
-                        <div class="alert alert-danger">
-                            {% for message in messages %}
-                                <p>{{message}}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                {% endwith %} -->
-
-                <div id="mensajeAlerta2"></div>
-
-                <form action="/register" method="post" id="formRegister">
-                    <div class="form-group">
-                        <label for="first_name">Nombre</label>
-                        <input type="text" name="first_name" id="first_name" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="last_name">Apellido</label>
-                        <input type="text" name="last_name" id="last_name" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input type="text" name="email" id="email" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Contraseña</label>
-                        <input type="password" name="password" id="password" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="confirm_password">Confirmar contraseña</label>
-                        <input type="password" name="confirm_password" id="confirm_password" class="form-control">
-                    </div>
-                    <input type="submit" value="Registrarme" class="btn btn-primary">
-                </form>
-            </div>
-            <div class="col-6">
-                <h2>Login</h2>
-                <!-- {% with messages = get_flashed_messages(category_filter=['login']) %}
-                    {% if messages %}
-                        <div class="alert alert-danger">
-                            {% for message in messages %}
-                                <p>{{message}}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                {% endwith %} -->
-
-                <div id="mensajeAlerta"></div>
-
-                <form action="/login" method="post" id="formLogin">
-                    <div class="form-group">
-                        <label for="email2">E-mail</label>
-                        <input type="text" name="email" id="email2" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="password2">Contraseña</label>
-                        <input type="password" name="password" id="password2" class="form-control">
-                    </div>
-                    <input type="submit" value="Log in" class="btn btn-warning" >
-                </form>
-            </div>
+    <header id="header">
+        <div id="top">
+          <img id="header-img" src="{{url_for('static', filename='images/pet-5278139.jpg')}}" alt="Company Logo" />
+          <nav id="nav-bar">
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/register/">Create Appointment</a>
+            <a class="nav-link" href="#products">Products</a>
+            <a class="nav-link" href="/login/">Login</a>
+            <a class="nav-link" href="#contact">Contact</a>
+          </nav>
         </div>
-    </div>
-    <script src="{{url_for('static', filename='js/index.js')}}"></script>
+        <h1 id="main-title">The Best Quality For Your Best Friend</h1>
+      </header>
+      
+      <main>
+        <section id="products">
+          <div id="description">
+            <h2 class="section-title">Our Products</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+          </div>
+          <div id="product-catalogue">
+            <img class="catal-img" src="https://cdn.pixabay.com/photo/2015/09/09/19/41/cat-932846_960_720.jpg" alt="Cat Toy" />
+            <img class="catal-img" src="https://cdn.pixabay.com/photo/2020/01/09/12/23/dog-4752630_960_720.jpg" alt="Dog Toy" />
+            <img class="catal-img" src="https://cdn.pixabay.com/photo/2015/09/05/00/43/dog-923610_960_720.jpg" alt="Dog Toy" />
+            <img class="catal-img" src="https://cdn.pixabay.com/photo/2018/07/21/09/17/cat-3552143_960_720.jpg" alt="Cat Toy" />
+            <img class="catal-img" src="https://cdn.pixabay.com/photo/2019/06/10/18/45/welsh-corgi-pembroke-4264957_960_720.jpg" alt="Dog Toy" />
+            <img class="catal-img" src="https://cdn.pixabay.com/photo/2014/10/14/09/03/terrier-487963_960_720.jpg" alt="Dog Toy" />
+          </div>
+        </section>
+        <!-- <section id="video-promo">
+          <h2 class="section-title video-title">Featuring Video</h2>
+          <iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/H4JE6XDR6UE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+          <div id='map' style='width: 400px; height: 300px;'></div>
+          <script>
+          // TO MAKE THE MAP APPEAR YOU MUST
+          // ADD YOUR ACCESS TOKEN FROM
+          // https://account.mapbox.com
+          mapboxgl.accessToken = '<your access token here>';
+          const map = new mapboxgl.Map({
+          container: 'map', // container ID
+          style: 'mapbox://styles/mapbox/streets-v11', // style URL
+          center: [-74.5, 40], // starting position [lng, lat]
+          zoom: 9, // starting zoom
+          projection: 'globe' // display the map as a 3D globe
+          });
+          map.on('style.load', () => {
+          map.setFog({}); // Set the default atmosphere style
+          });
+          </script>
+
+        </section> -->
+        <section id="contact">
+          <h2 class="section-title video-title">Contact Us. Let Us Know What You Need</h2>
+          <form id="form" action="https://www.freecodecamp.org/email-submit">
+            <input id="name" type="text" placeholder="Enter your name" />
+            <input name="email" required id="email" type="email" placeholder="Enter a valid email adress" />
+            <textarea name="message" id="message" cols="30" rows="10" placeholder="Enter your message"></textarea>
+            <input id="submit" type="submit" />
+          </form>
+        </section>
+      </main>
+      <script src='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js'></script>
 </body>
 </html>

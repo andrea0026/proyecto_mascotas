@@ -8,16 +8,21 @@ bcrypt = Bcrypt(app)
 
 @app.route('/')
 def index():
-    if 'usuario_id' not in session: #Solo puede ver la página si ya inició sesión 
-        return render_template('index.html')
+    return render_template('index.html')
 
-    return redirect('/dashboard')    
+@app.route('/register/')
+def register_template():
+    return render_template('register.html')
 
-@app.route('/register', methods=['POST'])
+@app.route('/login/')
+def login_template():
+    return render_template('login.html')
+  
+@app.route('/register/register_user/', methods=['POST'])
 def register(): 
     #request.form = {'first_name.......'}
     if not User.valida_usuario(request.form):
-        return redirect('/dashboard')
+        return redirect('/register/')
         # return jsonify(message='Correcto')
 
     pwd = bcrypt.generate_password_hash(request.form['password']) 
@@ -32,10 +37,10 @@ def register():
     id = User.save(formulario) #Guardando a mi usuario y recibo el ID del nuevo registro
     session['usuario_id'] = id #Guardando en sesion el identificador
     
-    # return redirect('/dashboard')
-    return jsonify(message='Correcto')
+    return redirect('/dashboard')
+    # return jsonify(message='Correcto')
 
-@app.route('/login', methods=['POST'])
+@app.route('/login/login_user/', methods=['POST'])
 def login():
     user = User.get_by_email(request.form)
     if not user: #si user=False
@@ -64,7 +69,12 @@ def dashboard():
     }
 
     user = User.get_by_id(formulario) #Usuario que inicio sesión
-    appointments=Appointment.get_appointment_by_user(formulario)
+    
+    formulario_appointments = {
+        "id": session['usuario_id']
+    }
+    
+    appointments=Appointment.get_appointment_by_user(formulario_appointments)
     past_appointments = Appointment.get_past()
     return render_template('dashboard.html', user=user,appointments=appointments, past_appointments=past_appointments)
 
