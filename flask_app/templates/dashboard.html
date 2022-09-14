@@ -30,26 +30,28 @@
                 </thead>
                 <tbody>
                     {% for appointment in appointments %}
-                        <tr>
-                            <td>{{ appointment.date }}</td>
-                            <td>{{ appointment.site }}</td>
-                            <td>{{ appointment.pet_name }}</td>
-                            <td>
-                                {% if appointment.animal_type == 'p' %}
-                                    Perro
-                                {% elif appointment.animal_type == 'g' %}
-                                    Gato
-                                {% else %}
-                                    Valor No encontrado
-                                {% endif %}
-                            </td>
-                            <td>{{ appointment.service_type_id }}</td> <!-- falta traer la descripcion de estas tablas -->
-                            <td>{{ appointment.client_type_id }}</td>
-                            <td>
-                                <a href="/edit/appointment/{{appointment.id}}" class="btn btn-primary">Editar</a>
-                                <a href="/delete/appointment/{{appointment.id}}" class="btn btn-danger">Eliminar</a>
-                            </td>
-                        </tr>
+                        {% if appointment.id != past_appointments.id %}
+                            <tr>
+                                <td>{{ appointment.date }}</td>
+                                <td>{{ appointment.site }}</td>
+                                <td>{{ appointment.pet_name }}</td>
+                                <td>
+                                    {% if appointment.animal_type == 'p' %}
+                                        Perro
+                                    {% elif appointment.animal_type == 'g' %}
+                                        Gato
+                                    {% else %}
+                                        Valor No encontrado
+                                    {% endif %}
+                                </td>
+                                <td>{{ appointment.service_type_id }}</td> <!-- falta traer la descripcion de estas tablas -->
+                                <td>{{ appointment.client_type_id }}</td>
+                                <td>
+                                    <a href="/edit/appointment/{{appointment.id}}" class="btn btn-primary">Editar</a>
+                                    <a href="/delete/appointment/{{appointment.id}}" class="btn btn-danger">Eliminar</a>
+                                </td>
+                            </tr>
+                        {% endif %}
                     {% endfor %}
                 </tbody>
             </table>
@@ -65,11 +67,13 @@
                 </thead>
                 <tbody>
                     {% for past_appointment in past_appointments %}
+                        {% if past_appointment.user_id == user.id %}
                         <tr>
                             <td>{{ past_appointment.date }}</td>
 			                <td>{{ past_appointment.site }}</td>
                             <td>{{ past_appointment.pet_name }}</td>
                         </tr>
+                        {% endif %}
                     {% endfor %}
                 </tbody>
             </table>
