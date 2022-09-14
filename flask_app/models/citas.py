@@ -77,14 +77,24 @@ class Appointment:
         now = datetime.now()
         current_time = now.strftime("%Y-%m-%d")
         query = "SELECT appointments.* FROM appointments LEFT JOIN users ON users.id = appointments.user_id where date < '" + str(current_time)  + "'"#LEFT JOIN users
-        print(query)
         results = connectToMySQL('tienda_mascotas').query_db(query) #Lista de diccionarios
         past_appointments = []
         for appointment in results:
             past_appointments.append(cls(appointment))
-        print(past_appointments)
         return past_appointments
     
+    @classmethod
+    def get_current(cls):
+        now = datetime.now()
+        current_time = now.strftime("%Y-%m-%d")
+        query = "SELECT appointments.* FROM appointments LEFT JOIN users ON users.id = appointments.user_id where date >= '" + str(current_time)  + "'"#LEFT JOIN users
+        print(query)
+        results = connectToMySQL('tienda_mascotas').query_db(query) #Lista de diccionarios
+        current_appointments = []
+        for appointment in results:
+            current_appointments.append(cls(appointment))
+        print(current_appointments)
+        return current_appointments
 
     @classmethod
     def get_by_id(cls, formulario): 
@@ -108,7 +118,8 @@ class Appointment:
     
     @classmethod
     def get_appointment_by_user(cls, formulario): 
-        query = "SELECT appointments.* FROM appointments LEFT JOIN users ON users.id = appointments.user_id WHERE user_id = %(id)s" 
+        query = "SELECT appointments.* FROM appointments LEFT JOIN users ON users.id = appointments.user_id WHERE user_id = %(id)s"
+        print(query) 
         result = connectToMySQL('tienda_mascotas').query_db(query, formulario) #recibimos una lista 
         appointments =[]
         for appointment in result:
