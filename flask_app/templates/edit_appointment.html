@@ -24,14 +24,13 @@
             {% endif %}
         {% endwith %}
         <form action="/update/appointment" method="post">
+            <h2>Editar cita</h2>
             <input type="hidden" name="user_id" value="{{user.id}}">
             <input type="hidden" name="id" value="{{appointment.id}}" >
             <div class="form-group">
                 <label for="name">Mascota</label>
                 <input type="text" id="pet_name" name="pet_name" class="form-control" value="{{appointment.pet_name}}" required>
             </div>
-            <h2>Editar cita</h2>
-            <br>
             <div class="form-group">
                 <label for="description">Fecha</label>
                 <input type="datetime-local" id="date" name="date" class="form-control" value="{{appointment.date}}" required>
@@ -48,7 +47,15 @@
                 <label for="description">sede</label>
                 <input type="text" id="site" name="site" class="form-control" value="{{appointment.site}}" required>
             </div>
-            <h2>Falta que traigan los tipos de servicios</h2>
+            <div class="form-group">
+                <label for="service_type_id">Tipo de servicio</label> 
+                <select class="form-select" aria-label="Default select example" name="service_type_id" id="service_type_id">
+                    <option value ="" selected>Open this select menu</option>
+                    {% for service in services %}
+                        <option value={{service.id}}>{{service.service_type}} Para Tu mascota entre 0 - {{service.animal_weight}} Kg de peso y Tamaño entre 0 - {{service.animal_height}}</option>
+                    {% endfor %}
+                </select>
+            </div>
             <br>
             <input type="submit" class="btn btn-success" value="Guardar">
             <br>

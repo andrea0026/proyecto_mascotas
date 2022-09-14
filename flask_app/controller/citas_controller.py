@@ -60,6 +60,23 @@ def update_appointment():
     Appointment.update(request.form)
     return redirect('/dashboard')
 
+@app.route('/show/appointment/<int:id>') 
+def show_appointment(id):
+    if 'usuario_id' not in session: 
+        return redirect('/register/')
+
+    formulario = {
+        "id": session['usuario_id']
+    }
+
+    user = User.get_by_id(formulario) 
+
+    formulario_appointments = { "id": id }
+    
+    appointment = Appointment.get_by_id(formulario_appointments)
+
+    return render_template('show_appointment.html', user=user, appointment=appointment)
+
 @app.route('/delete/appointment/<int:id>')
 def delete_appointment(id):
     if 'usuario_id' not in session: #Solo puede ver la página si ya inició sesión 
