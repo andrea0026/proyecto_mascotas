@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="{{ url_for('static', filename='css/style-log_reg.css') }}" type="text/css" media="all" rel="stylesheet" />
+</head>
+<body class="text-center">
+    <header id="header">
+        <div id="top">
+        <img id="header-img" src="{{url_for('static', filename='images/pet-5278139.jpg')}}" alt="Company Logo" />
+        <nav id="nav-bar">
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="#products">Products</a>
+            <a class="nav-link" href="/register/">Register</a>
+            <a class="nav-link" href="#contact">Contact</a>
+        </nav>
+        </div>
+    </header>
+    <main class="form-signin w-100 m-auto">
+        <div id="mensajeAlerta"></div>
+
+        <form action="/login/login_user/" method="post" id="formLogin" class="col-6 mx-auto mt-4">
+            <h1 class="h3 mb-3 fw-normal">Please Sign In</h1>
+            <div class="form-floating">
+                <input type="text" name="email" id="email2" class="form-control">
+                <label for="email2">E-mail</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" name="password" id="password2" class="form-control">
+                <label for="password2">Contraseña</label>
+            </div>
+            <input type="submit" value="Log in" class="w-100 btn btn-lg btn-success" >
+        </form>
+    </main>
+    <footer class="py-3 my-4">
+        <p class="text-center text-muted">&copy; 2022 Company, Inc</p>
+    </footer>
+    <script src="{{url_for('static', filename='js/index.js')}}"></script>
+</body>
+</html>

@@ -46,9 +46,10 @@
                                 </td>
                                 <td>{{ current_appointment.service_type_id }}</td> <!-- falta traer la descripcion de estas tablas -->
                                 <td>{{ current_appointment.client_type_id }}</td>
-                                <td>
+                               <td>
                                     <a href="/edit/appointment/{{current_appointment.id}}" class="btn btn-primary">Editar</a>
                                     <a href="/delete/appointment/{{current_appointment.id}}" class="btn btn-danger">Eliminar</a>
+                                    <a href="/show/appointment/{{current_appointment.id}}" class="btn btn-warning">Mostrar</a>
                                 </td>
                             </tr>
                         {% endif %}
