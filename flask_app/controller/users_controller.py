@@ -70,13 +70,13 @@ def dashboard():
 
     user = User.get_by_id(formulario) #Usuario que inicio sesión
     
-    formulario_appointments = {
-        "id": session['usuario_id']
-    }
+    # formulario_appointments = {
+    #     "id": session['usuario_id']
+    # }
     
-    appointments=Appointment.get_appointment_by_user(formulario_appointments)
+    current_appointments=Appointment.get_current()
     past_appointments = Appointment.get_past()
-    return render_template('dashboard.html', user=user,appointments=appointments, past_appointments=past_appointments)
+    return render_template('dashboard.html', user=user,current_appointments=current_appointments, past_appointments=past_appointments)
 
 @app.route('/logout')
 def logout():

@@ -29,27 +29,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for appointment in appointments %}
-                        {% if appointment.id != past_appointments.id %}
+                    {% for current_appointment in current_appointments %}
+                        {% if current_appointment.user_id == user.id %}
                             <tr>
-                                <td>{{ appointment.date }}</td>
-                                <td>{{ appointment.site }}</td>
-                                <td>{{ appointment.pet_name }}</td>
+                                <td>{{ current_appointment.date }}</td>
+                                <td>{{ current_appointment.site }}</td>
+                                <td>{{ current_appointment.pet_name }}</td>
                                 <td>
-                                    {% if appointment.animal_type == 'p' %}
+                                    {% if current_appointment.animal_type == 'p' %}
                                         Perro
-                                    {% elif appointment.animal_type == 'g' %}
+                                    {% elif current_appointment.animal_type == 'g' %}
                                         Gato
                                     {% else %}
                                         Valor No encontrado
                                     {% endif %}
                                 </td>
-                                <td>{{ appointment.service_type_id }}</td> <!-- falta traer la descripcion de estas tablas -->
-                                <td>{{ appointment.client_type_id }}</td>
+                                <td>{{ current_appointment.service_type_id }}</td> <!-- falta traer la descripcion de estas tablas -->
+                                <td>{{ current_appointment.client_type_id }}</td>
                                 <td>
-                                    <a href="/edit/appointment/{{appointment.id}}" class="btn btn-primary">Editar</a>
-                                    <a href="/delete/appointment/{{appointment.id}}" class="btn btn-danger">Eliminar</a>
-                                    <a href="/show/appointment/{{appointment.id}}" class="btn btn-warning">Mostrar</a>
+                                    <a href="/edit/appointment/{{current_appointment.id}}" class="btn btn-primary">Editar</a>
+                                    <a href="/delete/appointment/{{current_appointment.id}}" class="btn btn-danger">Eliminar</a>
+                                    <a href="/show/appointment/{{current_appointment.id}}" class="btn btn-warning">Mostrar</a>
                                 </td>
                             </tr>
                         {% endif %}

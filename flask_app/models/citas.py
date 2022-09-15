@@ -62,6 +62,19 @@ class Appointment:
         return result
 
     @classmethod
+    def get_current(cls):
+        now = datetime.now()
+        current_time = now.strftime("%Y-%m-%d")
+        query = "SELECT appointments.* FROM appointments LEFT JOIN users ON users.id = appointments.user_id where date >= '" + str(current_time)  + "'"#LEFT JOIN users
+        print(query)
+        results = connectToMySQL('tienda_mascotas').query_db(query) #Lista de diccionarios
+        current_appointments = []
+        for appointment in results:
+            current_appointments.append(cls(appointment))
+        print(current_appointments)
+        return current_appointments
+
+    @classmethod
     def get_all(cls):
         now = datetime.now()
         current_time = now.strftime("%Y-%m-%d")
